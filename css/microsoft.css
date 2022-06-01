@@ -1,0 +1,1097 @@
+/* list-style:none;   去除list小黑點 */
+
+
+/* 基本設定 */
+* {
+    box-sizing: border-box;
+    list-style: none;
+}
+
+
+body,ul,li {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* 設定網頁視窗邊框 */
+.container {
+    max-width: calc(1600px + 10%);
+    padding: 0 5%;
+    margin: 0 auto;
+}
+/* 大區塊使用flex排列 小區塊用padding margin排版 */
+.container .nav {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    position: relative;
+}
+/* nav最左邊icon區塊 */
+.container .nav .icon {
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+/* 設定icon圖片設定，給予寬高基本設定 */
+.container .nav .icon .icon-logo {
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/logo/favicon.ico);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    margin-right: 5px;
+}
+/* 設定icon文字基本大小樣式設定 */
+.container .nav .icon .icon-text {
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgb(66, 66, 66);
+}
+/* nav左二區塊，不用寬度使用flex排列
+margin-right:auto 可將nav-left向右推 */
+.container .nav .nav-left {
+    height: 54px;
+    font-size: 13px;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container .nav .nav-left .menu li {
+    display: inline-block;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 54px;
+    
+}
+ /* 使more區塊靠近區塊靠近windows 調整之間距離 */
+.container .nav .nav-left .menu .more>ul{
+    padding-left: 1px;
+}
+
+/* 固定的底線樣式
+.nav-left .menu li:hover {
+    text-decoration: underline;
+    border: 1px dashed black;
+    
+} */
+
+/* 訂做底線效果設定 class="underline" 使用hover::after */
+
+.underline {
+    position: relative;
+}
+
+.underline:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0%;
+    width: 100%;
+    height: 2px;
+    background: black;
+    text-decoration: none;
+} 
+
+  /* 外框線尚未成功 */
+.border-dashed{
+    position: relative;
+}
+
+.border-dashed:active::after {
+    content: '';
+    position: absolute;
+    top:-60%;
+    left:-100%;
+    width: 100px;
+    height: 45px;
+    border: 1px dashed black;
+
+}
+
+/* 將預設的.more更多 先消失掉變板再出現 */
+.container .nav .nav-left .menu .more {
+    display: none;
+}
+
+/* 將預設的.more更多區塊內的Surface 先消失，第三次變版再出現 */
+.container .nav .nav-left .menu .dropdown-btn {
+    display: none;
+}
+
+/* a連結去除底線及變色 */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* 給予flex和高 不用設寬   */
+.container .nav .nav-right {
+    display: flex;
+    height: 54px;
+    font-size: 13px;
+}
+
+/* .nav右邊區塊基本設定 */
+.container .nav .nav-right .nav-right-left,
+.nav-right-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    line-height: 54px;
+}
+
+/* 漢堡條在基本版面時消失 */
+.container .nav .nav-right .nav-right-left .nav-right-left-two {
+    display: none;
+}
+/* 基本版面時下拉式選單，將.bar-microsoft先消失並重新調整，下拉式選單版面 */
+.all-microsoft-dropdown>li>.bar-microsoft {
+    display: none;
+} 
+
+/* 調整nav-right 內元素間padding */
+.container .nav .nav-right .nav-right-left .nav-right-left-one,
+.nav-right-left-three {
+    padding: 0 10px;
+}
+
+.container .nav .nav-right .nav-right-right .nav-right-right-one,
+.nav-right-right-two {
+    padding: 0 10px;
+    display: flex;
+}
+
+/* all-microsoft-dropdown的下拉式選單 */
+
+/* 讓all-microsoft-dropdown由直線排列改為橫式清單排列 */
+ .all-microsoft-dropdown{
+    position: absolute;
+    width: 1230px;
+    right: 10%;
+    top: 45px;
+    display: none;
+    z-index: 2;
+    background-color: #e6e6e6;
+    border-bottom: 3px solid black;
+    flex-direction: column;
+}  
+
+ .all-microsoft-dropdown .dropdown-top{
+    display: flex;
+    flex-wrap: wrap;
+    
+} 
+.all-microsoft-dropdown .dropdown-top ul{
+   width: calc(100% / 6);
+   
+}
+
+.all-microsoft-dropdown .dropdown-top ul>li{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 50px;
+
+}
+/* 下拉選單 第一區在全版時先消失，最後一版再出現 */
+.all-microsoft-dropdown .dropdown-top>.bar-microsoft:first-child{
+    display: none;
+}
+
+ /* .nav-right-left-one:hover .all-microsoft-dropdown{
+    display: flex;
+    flex-wrap: wrap;
+}  */
+
+#all-microsoft-dropdown-check:checked+.all-microsoft-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+}  
+
+.enter {
+    width: 30px;
+    height: 30px;
+    background-position: end ;
+    
+}
+
+/* 下拉選單 hover底線 */
+.all-microsoft-dropdown ul.bar li{
+    position: relative;
+}
+
+.bar>li:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 0%;
+    width: 100%;
+    height: 1px;
+    background: black;
+    text-decoration: none;
+} 
+
+ /* 檢視網站地圖 底線設定 */
+.all-microsoft-dropdown .dropdown-bottom .map-menu{
+    position: relative;
+    margin: 0 auto;
+    background-color: rgb(180, 180, 180);
+    display:block;
+}
+
+
+.all-microsoft-dropdown .dropdown-bottom .map-menu:hover::after{
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 0%;
+    width: 100%;
+    height: 1px;
+    background: black;
+    text-decoration: none;
+} 
+
+/* wrap */
+
+main {
+    position: relative;
+}
+
+.computer-text {
+    width: 520px;
+    height: 159.5px;
+    position: absolute;
+    top: 120px;
+    left: 180px;
+    color: black;
+    padding: 20px;
+    margin: 20px;
+
+}
+
+.computer-text>h1 {
+    font-size: 35px;
+
+
+}
+
+.computer-text p {
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+
+.computer-check {
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 39.5px;
+    margin-right: 30px;
+    transition: all 3s ease-in;
+    display: inline-block;
+}
+
+.computer-check span:hover {
+    margin-right: 8px;
+    text-decoration: underline;
+    opacity: 0.8;
+
+}
+
+/* wrap 輪播 箭頭樣式 設定 */
+.swiper .swiper-buttom{
+    width: 36px;
+    height: 36px;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+
+/* three-cards */
+
+ #carouse2 {
+    margin: 80px 0;
+}
+
+#carouse2 .container {
+    display: flex;
+    margin: auto;
+    justify-content:center;
+    align-items: center;
+}
+
+#carouse2 .container .three-card {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    
+}
+
+#carouse2 .container .three-card>a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+#carouse2 .container .three-card a>p{
+    align-items: center;
+    flex-wrap: nowrap;
+    font-weight: 800;
+
+}
+/* hover底線 */
+
+#carouse2 .container .three-card a>p{
+    position: relative;
+}
+
+#carouse2 .container .three-card a>p:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0%;
+    width: 100%;
+    height: 1px;
+    background: black;
+    text-decoration: none;
+} 
+
+
+
+/* four-cards */
+
+#carouse3 {
+    margin-bottom: 80px ;
+}
+
+#carouse3 .container .carouse3-card {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 -12px;
+
+}
+
+#carouse3 .container .carouse3-card>.card {
+    width: 25%;
+
+}
+
+#carouse3 .container .carouse3-card .card>img {
+    width: 100%;
+    padding: 10px;
+}
+
+.yellow1{
+    width: 69.94px;
+    height: 26px;
+    background-color: #ffd800;
+    font-size: 14px;
+    text-align: center;
+    line-height: 26px;
+}
+
+.yellow2{
+    width: 125px;
+    height: 26px;
+    background-color: #ffd800;
+    font-size: 14px;
+    text-align: center;
+    line-height: 26px;
+}
+
+#carouse3 .container .carouse3-card .card .card-content a {
+    color: #0067b8;
+    font-weight: 600;
+}
+
+#carouse3 .container .carouse3-card .card .card-content a span:hover{
+    margin-right: 10px;
+    text-decoration: underline;
+    opacity: 0.8;
+
+}
+
+
+/* woman */
+
+#carouse4 {
+    position: relative;
+    display: inline;
+    
+}
+
+
+#carouse4 .computer-woman {
+    width: 520px;
+    height: 159.5px;
+    position: absolute;
+    top: 180px;
+    left: 250px;
+    color: black;
+
+}
+
+.computer-woman h1 {
+    width: 520px;
+    height: 43px;
+    font-size: 35px;
+
+}
+
+.computer-woman p {
+    width: 520px;
+    height: 40px;
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+
+.computer-check-woman {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 39.5px;
+    margin-top: 20px;
+    transition: all 3s ease-in;
+}
+
+.computer-check-woman span:hover {
+    margin-right: 8px;
+    text-decoration: underline;
+    opacity: 0.8;
+
+}
+
+/* 55555 */
+
+
+/* 66666 */
+#carouse6 {
+    margin-bottom: 80px;
+}
+
+
+#carouse6 .container .carouse6-card {
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+
+#carouse6 .container .carouse6-card .card {
+    width: 25%;
+    padding: 10px;
+
+}
+
+#carouse6 .container .carouse6-card .card>img {
+    width: 100%;
+
+}
+
+#carouse6 .container .carouse6-card .card .card-content a {
+    color: #0067b8;
+    font-weight: 600;
+}
+
+#carouse6 .container .carouse6-card .card .card-content a span:hover{
+    margin-right: 10px;
+    text-decoration: underline;
+    opacity: 0.8;
+
+}
+
+
+
+/* social  */
+
+#carouse7 .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding-right: 20px;
+    margin: 40px auto;
+}
+
+#carouse7 .container p{
+    color:#616161;
+    font-size: 16px;
+}
+
+#carouse7 .container a>img {
+    width: 35px;
+    height: 35px;
+    padding:0 4px;
+
+}
+
+/* footer list */
+footer {
+    background: #f2f2f2;
+    padding-top: 24px;
+}
+
+/* footer-card 版面設定 */
+
+.container .footer-card {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 30px;
+    font-size: 14px;
+}
+footer #carouse8 .container .footer-card ul {
+    width: calc(100% / 6);   
+}
+
+/* footer-btn 版面設定 */
+
+footer #carouse8 .container .footer-btn{
+    display: flex;
+    margin-top:30px;
+   
+       
+}
+
+footer #carouse8 .container .footer-btn .footer-btn-left{
+    display: flex;     
+}
+
+footer #carouse8 .container .footer-btn .footer-btn-right {    
+   display: flex;
+      
+}
+footer #carouse8 .container .footer-card>ul{
+    font-weight: 800;
+} 
+
+footer #carouse8 .container .footer-card ul li a {
+    color: #616161;
+    font-size: 12px;
+}
+footer #carouse8 .container .footer-btn ul li a {
+    color: #616161;
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-right: 4px;
+}
+footer #carouse8 .container .footer-btn ul li {
+    padding-right: 18px;
+    padding-bottom: 10px;
+}
+
+.container .footer-btn .footer-btn-right ul li:not(last-child) {
+    margin-left: 5px;
+}
+
+input {
+    display: none;
+}
+
+/* footer 底線 */
+
+footer #carouse8 .container .footer-card  ul li a{
+    position: relative;
+}
+
+footer #carouse8 .container .footer-card  ul li :hover::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0%;
+    width: 100%;
+    height: 1px;
+    background: black;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+} 
+
+
+
+/* nav rwd */
+
+@media (max-width: 1395px) {
+
+
+    /* nav-list 消失 */
+    /* .all-microsoft-dropdown>li>ul.bar-microsoft {
+        display: none;
+    } */
+
+    /* wrap變版 可再調整 */
+    #carouse1 .computer-text {
+        position: absolute;
+        top: 90px;
+        left: 95px;
+
+    }
+
+    #carouse1 .computer-text>h1 {
+        font-size: 25px;
+        font-weight: 600;
+
+    }
+}
+
+/* all-microsoft-dropdown六行變五行 */
+@media (max-width: 1200px) {
+    .all-microsoft-dropdown .dropdown-top ul {
+        width: 20%;
+    }
+
+    .all-microsoft-dropdown .bar-microsoft {
+        display: none;
+    }
+
+    /* 讓他不要爆版 */
+    .all-microsoft-dropdown {
+        top: 100%;
+        left: 0px;
+        width: 90%;
+    }
+
+}
+
+/* four card-firsr rwd */
+@media (max-width:1083px) {
+
+    #carouse1>.container{
+        padding: 0%;
+    }
+    #carouse4>.container{
+        padding: 0%;
+    }
+
+    #carouse3 .container .carouse3-card {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -12px;
+        /* gap: 3px; */
+
+    }
+
+    #carouse3 .container .carouse3-card .card {
+        width: 50%;
+        padding: 8px;
+    }
+    /* four-card-two/first rwd */
+
+    #carouse6 .container .carouse6-card {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    #carouse6 .container .carouse6-card .card {
+        width: 50%;
+        padding: 10px;
+    }
+
+    .container .footer-card{
+        display: flex;
+    }
+
+    footer #carouse8 .container .footer-card ul{
+        width: calc(100% / 3);
+    }
+
+
+    @media (max-width:1010px) {
+        .menu {
+            display: flex;
+        }
+
+        .container .nav .nav-left .menu .dropdown-btn {
+            display: block;
+        }
+
+        .container .nav .nav-left .menu ul {
+            display: none;
+        }
+
+        .container .nav .nav-left .menu .more {
+            position: relative;
+            display: block;
+        }
+
+        /* 五行變四行 */
+        .all-microsoft-dropdown .dropdown-top ul {
+            width: 25%;
+        }
+
+        /* 為了讓它不要再寬度小於1100px時爆版 */
+        .all-microsoft-dropdown {
+            width: 90%;
+        }
+
+        .all-microsoft-dropdown>li>.bar-microsoft {
+            display: none;
+        }
+
+    }
+
+    @media (max-width:924px) {
+        .container .nav .nav-left .menu .dropdown-btn {
+            display: none;
+        }
+
+        .container .nav .nav-left .menu ul {
+
+            flex-direction: column;
+            top: 54px;
+            position: absolute;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .all-microsoft-dropdown>li>.bar-microsoft {
+            display: none;
+        }
+    }
+
+    @media (max-width:870px) {
+
+
+        .container .menu li {
+            position: relative;
+        }
+
+        .container .menu li:last-child:hover ul {
+            display: flex;
+        }
+
+        .all-microsoft-dropdown>li>.bar-microsoft {
+            display: none;
+        }
+
+        #carouse7 .container{
+            padding:3%;
+        }
+
+        footer{
+            padding:3%;
+        }
+
+    }
+
+    /* 最後一層 */
+    @media (max-width:855px) {
+        .container .nav .nav-right li{
+            width: 100%;
+            padding: 0 20px;
+        }
+        .container .nav .nav-right .down {
+            display: unset;
+            margin-right: 50px;   
+        }
+
+        /* 變到此版時將原本預設的container 設定padding 5%推回來 */
+        .container {
+            padding: 0%;
+        }
+
+        /* 讓此區塊長度填滿nav */
+        .container .nav .nav-right {
+            width: 100%;
+        }
+
+        /* 將flex 放在nav-right-left/right的父層才有效果 */
+        .container .nav {
+            position: relative;
+        }
+
+        .container .nav .nav-right {
+            display: flex;
+        }
+
+        /* 將nav-right 中分組的.nav-right-left 使用margin-right: auto; .nav-right-left 會被右推到底 */
+        .container .nav .nav-right .nav-right-left {
+            margin-right: auto;
+        }
+
+        /* 
+    將nav-right-left-two,.nav-right-left-three 互推產生padding 空間 */
+        .container .nav .nav-right .nav-right-left .nav-right-left-two,
+        .nav-right-left-three {
+            padding: 0 8px;
+        }
+
+        .container .nav .nav-right .nav-right-right .nav-right-right-one,
+        .nav-right-right-two {
+            padding: 0 8px;
+        }
+
+        .container .nav .nav-right .nav-right-left,
+        .nav-right-right {
+            display: flex;
+        }
+
+        /* 讓nav-left 此區塊消失 */
+        .container .nav .nav-left {
+            display: none;
+        }
+
+        .container .nav .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 讓所有 Microsoft此元素消失 */
+        .container .nav .nav-right .nav-right-left .nav-right-left-one {
+            display: none;
+        } 
+
+        /* 讓漢堡條出現 */
+
+        .container .nav .nav-right .nav-right-left .nav-right-left-two {
+            display: block;
+        } 
+
+        /* 使用not選擇器 將排頭not 其他人none掉 */
+
+        /* .nav-right-left-two #all-microsoft-dropdown-check .all-microsoft-dropdown ul>li:not(:first-child) {
+            display: none;
+        } */
+
+        .all-microsoft-dropdown .dropdown-top ul {
+            width: 100%;  
+        }
+
+        .container .nav .nav-right li{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .all-microsoft-dropdown .dropdown-top .bar-microsoft{
+            display: block;
+        } 
+
+        .all-microsoft-dropdown .dropdown-top>.bar-microsoft:first-child{
+            display: block;
+        }
+        
+       .all-microsoft-dropdown .dropdown-top .bar>li {
+            display: none;
+        }
+
+        #software:checked~.software-menu {
+            display: block;
+        }
+
+        #computer:checked~.computer-menu {
+            display: block;
+        }
+
+        #game:checked~.game-menu {
+            display: block;
+        }
+
+        #business:checked~.business-menu {
+            display: block;
+        }
+
+        #openning:checked~.openning-menu {
+            display: block;
+        }
+
+        #other:checked~.other-menu {
+            display: block;
+        } 
+
+
+        #all-microsoft-dropdown-check:checked+.all-microsoft-dropdown {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+        }
+
+        .all-microsoft-dropdown>li>.bar-microsoft {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        #carouse3>.container{
+            padding: 5%;
+        }
+
+    }
+
+    @media (max-width:768px) {
+
+        /* wrap 字掉下來置中/圖片滿版 */
+        #carouse1 .computer-text {
+            width: 100%;
+            height: 320px;
+            background-color: rgb(219, 218, 218);
+            position: static;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            color: black;
+        }
+
+        #carouse1 .computer-text>h1 {
+            font-size: 35px;
+
+        }
+
+        #carouse1 .computer-text>p {
+            font-size: 15px;
+            padding-bottom: 20px;
+        }
+
+        #carouse1 .computer-check {
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            transition: all 3s ease-in;
+        }
+
+        /* three-card變版 */
+        #carouse2 .container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #carouse2 .container .three-card a{
+            display: flex;
+            flex-direction: row;
+        
+            padding: 12px;
+
+        } 
+
+        #carouse2 .container .three-card a>p{
+            margin: 0px;
+    
+            
+        }
+        #carouse2 .container .three-card a>img{
+            width: 20px;
+            height: 20px;
+            
+        } 
+        
+
+        /* woman 字掉下來置中/圖片滿版 */
+
+        #carouse4 .computer-woman {
+            width: 100%;
+            height: 320px;
+            background-color: rgb(219, 218, 218);
+            position: static;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            color: black;
+
+        }
+
+        #carouse4 .computer-woman>h1 {
+            font-size: 35px;
+            text-align: center;
+
+        }
+
+        #carouse4 .computer-woman>p {
+            font-size: 15px;
+
+        }
+
+        #carouse4 .computer-check-woman {
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            line-height: 39.5px;
+            margin-top: 20px;
+        }
+
+        .computer-check-woman span:hover {
+            margin-right: 8px;
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        /* footer-btn中footer-btn-left和footer-btn-right，從同行變成排列 */
+
+        
+
+        footer #carouse8 .container .footer-btn{
+            flex-direction: column;
+        }
+
+
+        @media (max-width:530px) {
+            #carouse3 .container .carouse3-card {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -12px;
+                /* gap: 3px; */
+
+            }
+
+            #carouse3 .container .carouse3-card .card {
+                width: 100%;
+                padding: 4px;
+
+            }
+
+            /* four-card-two/rwd 變一張*/
+
+            #carouse6 .container .carouse6-card {
+                display: flex;
+                flex-wrap: wrap;
+
+            }
+
+            #carouse6 .container .carouse6-card .card {
+                width: 100%;
+                padding: 5px;
+
+            }
+
+            footer #carouse8 .container .footer-card {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            footer #carouse8 .container .footer-card ul{
+                padding: 20px 0;
+            }
+
+            footer .footer-btn {
+                font-size: 12px;
+            }
+            footer #carouse8 .container .footer-btn ul li{
+                margin-top: 8px;
+                padding: 0 5px;
+            }
+        }
+
+    }
+    }
